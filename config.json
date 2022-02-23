@@ -1,0 +1,10 @@
+{
+  "tg": {
+    "token": "[Insert your tg token here]",
+    "chatId": "[Insert your tg chat id here]"
+  },
+  "server": {
+    "port": 8080,
+    "ip": "[Insert your server ip here]"
+  }
+}
