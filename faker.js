@@ -37,11 +37,11 @@ function handleData(data, socket) {
 }
 
 function handleFile(file) {
-  simpleParser(file, {}, (_err, parsed) =>
-    parsed.attachments.forEach(({ content }) =>
-      bot.sendPhoto(config.tg.chatId, content)
-    )
-  );
+  simpleParser(file, {}, async (_err, parsed) => {
+    for (const { content } of parsed.attachments) {
+      await bot.sendPhoto(config.tg.chatId, content);
+    }
+  });
 }
 
 net
