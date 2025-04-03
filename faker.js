@@ -1,4 +1,5 @@
 const net = require("net");
+const { spawn } = require("child_process");
 const simpleParser = require("mailparser").simpleParser;
 const TelegramBot = require("node-telegram-bot-api");
 const config = require("./config.json");
@@ -29,11 +30,16 @@ function handleData(data, socket) {
     fileBuffer += sData;
     if (sData.match("\r\n.\r\n")) {
       socket.write("250 OK\n");
+      doNoise();
       handleFile(fileBuffer);
       fileBuffer = "";
       handlingData = false;
     }
   }
+}
+
+function doNoise() {
+  spawn(config.process.program, config.process.args);
 }
 
 function handleFile(file) {
